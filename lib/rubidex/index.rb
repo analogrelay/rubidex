@@ -8,11 +8,11 @@ class Rubidex::Index
         @logger = logger
     end
 
-    def define_symbol(name, parent, reference)
+    def define_symbol(name, parent, type, reference)
         symbol = @symbols.find { |s| s.parent == parent && s.name == name }
         if symbol.nil?
             id = @symbols.count + 1
-            symbol = Rubidex::Symbol::new(id, name, parent)
+            symbol = Rubidex::Symbol::new(id, name, parent, type)
             @symbols << symbol
         end
         symbol.add_reference(reference)
